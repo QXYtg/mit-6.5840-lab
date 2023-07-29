@@ -73,7 +73,7 @@ func (c *Coordinator) AskForTask(request *AskForTaskRequest, response *AskForTas
 
 			// 创建定时器并关联
 			go time.AfterFunc(time.Duration(WAIT_TIME)*time.Second, func() {
-				task := MapTasks.changeStatusByTaskNoSafe(targetReduceTask.taskNo, RUNNING, IDLE)
+				task := ReduceTasks.changeStatusByTaskNoSafe(targetReduceTask.taskNo, RUNNING, IDLE)
 				if task == nil {
 					log.Println("[AskForTask.timer]任务已完成，taskNo：", targetReduceTask.taskNo)
 				} else {
